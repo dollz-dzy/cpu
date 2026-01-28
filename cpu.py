@@ -21,6 +21,7 @@ microcode_rom =  aici salvam instructiunile hex, ce is only read, in CU ,
 acestea pot fi citite doar de CU_comp, ce in fucntei de ele , trimite anumite 
 date ex , read,write , etc... 
 """
+
 MICROCODE_ROM = {
     "0x00" : [ # LOAD
         "MOVE_DATA_ON__IN_ADDRESS_BUSS",
@@ -29,8 +30,16 @@ MICROCODE_ROM = {
     ]
 }
 
-def CU_comp(hex_code):
-    pass
+def CU_comp():
+    
+    # citim PC 
+    HEX_CODE = regs["PC"]
+
+
+    if HEX_CODE in MICROCODE_ROM:
+        return MICROCODE_ROM[HEX_CODE]
+    else:
+        return f"{HEX_CODE} nu exista"
 
 # =================================================================================================
 # ALU - Arithmetic Logic Unit
@@ -46,15 +55,21 @@ LU - logic Unit , (verificari de tip fals adevarat doar)
 ALU - salveaza rezultautl in reg_a, dar seteaza si niste flaguri pentru CU 
 """
 
-def ALU_comp(data_a , data_b , control_signal):
+# def ALU_comp(data_a , data_b , control_signal):
+#     pass 
+
+def AU_ALU_comp():
     pass 
+
+def LU_ALU_comp():
+    pass
 
 # =================================================================================================
 # REGS -  registri
 
 regs  = {
     # special regs 
-    "PC" : "", # program counter
+    "PC" : "0x00", # program counter , hardcode , incepem de la 0x00
     "IR" : "", # instruction register
     "FLAGS" : "", # flagurile 
 
